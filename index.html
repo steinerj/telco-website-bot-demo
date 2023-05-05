@@ -4,6 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home - Your Telco Company</title>
+
+  <!-- NativeChat -->
+  <script src="https://web-chat.nativechat.com/3.7.3/sdk/nativechat.js"></script>
+  <link href="https://web-chat.nativechat.com/3.7.3/sdk/nativechat.css" rel="stylesheet" type="text/css">
+
   <!-- Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
@@ -36,11 +41,47 @@
   <!-- Bootstrap JS -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <!-- Include Header and Footer -->
+  <!-- Include Header, Footer and load chatbot-->
   <script>
     $(function() {
       $("#header").load("header.html");
       $("#footer").load("footer.html");
+      var chatSettings = {
+          bot: {
+              id: "9e50e878099f44a69ab5aa1b"
+          },
+          channel: {
+              id: "46e8bc1e-0975-4e36-be04-724389bbc139",
+              token: "7d2c4fa2-16c9-4d22-8ca4-c89b3dc097de"
+          },
+          locale: "en",
+          session: {
+            context: {
+              _systemTracking: {
+                insight: {
+                  apiKey: "8508d835-d75c-2bcf-b181-6e80bec65e90", // replace with your Insight data center API key
+                  apiServerUrl: "https://au-api.insight.sitefinity.com", // change this to the API server URL where your Insight account is hosted
+                  dataSource: "Website",
+                  canTrackCurrentUser: true,
+                }
+              }
+            }
+            //clear: true
+            //,userMessage: "check-status-order"
+            //,userMessage: "activate-sim"
+          }
+        };
+        window.NativeChat.load({
+                id: "kcChatWindow",
+                origin: "",
+                display: {
+                    mode: "modal",
+                    launcher: {
+                      popupDelayInMs: 1500,
+                    },
+                },
+                chat: chatSettings
+        });
     });
   </script>
 </body>
