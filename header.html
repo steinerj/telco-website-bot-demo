@@ -1,0 +1,67 @@
+<header>
+
+  <script>
+    function initInsight() {
+    var insightClient = new sfDataIntell.Client({
+        apiKey: '8508d835-d75c-2bcf-b181-6e80bec65e90', // replace with your Insight data center API key
+        apiServerUrl: 'https://au-api.insight.sitefinity.com', // change this to the API server URL where your Insight account is hosted
+        source: 'Website',
+        trackPageVisits: true,
+        trackBrowserInformation: true,
+        trackUtmParameters: true,
+        crossDomainTrackingEntries: ["example.org", "example.com"]
+    });
+}
+
+document.addEventListener('insight-sdk-ready', initInsight);
+  </script>
+
+  <script type="text/javascript" src="https://cdn.insight.sitefinity.com/sdk/sitefinity-insight-client.min.3.1.5.js" async></script>
+
+
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50">
+            <rect x="5" y="10" width="40" height="30" rx="5" fill="#0077B5" stroke="#333" stroke-width="2" />
+            <circle cx="25" cy="35" r="5" fill="#FFF" />
+            <path d="M13 25h24v10H13z" fill="#FFF" />
+            <path d="M23 27h4v4h-4z" fill="#0077B5" />
+          </svg>
+          Your Telco Company
+        </a>
+  
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="login.html">Log In</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="signup.html">Sign Up</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
