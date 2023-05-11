@@ -71,17 +71,38 @@
             //,userMessage: "activate-sim"
           }
         };
-        window.NativeChat.load({
-                id: "kcChatWindow",
-                origin: "",
-                display: {
-                    mode: "modal",
-                    launcher: {
-                      popupDelayInMs: 1500,
-                    },
-                },
-                chat: chatSettings
-        });
+		
+		document.addEventListener("insight-leads", function(e) {
+			
+			var showChat = false;
+			//Check if the visitor is in the second level (Purchased) of the SF Insight LeadScore (SIM Card)
+			if(e.detail.find(x => x.Leads.find(l => l.ScoringId === 20 && l.Levels.find(lvl => lvl.LevelId === 2))))
+			{ 
+				chatSettings.session.userMessage = "activate-sim";
+				showChat = true;
+			}
+			
+			if(e.detail.find(x => x.Leads.find(l => l.ScoringId === 21 && l.Levels.find(lvl => lvl.LevelId === 8))))
+			{ 
+				chatSettings.session.userMessage = "check-status-order";
+				showChat = true;
+			}
+			
+			if(showChat)
+			{
+				window.NativeChat.load({
+					id: "kcChatWindow",
+					origin: "",
+					display: {
+						mode: "modal",
+						launcher: {
+						  popupDelayInMs: 1000,
+						},
+					},
+					chat: chatSettings
+				});
+			}
+		}); 
     });
   </script>
 </body>

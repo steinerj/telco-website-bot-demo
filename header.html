@@ -2,15 +2,28 @@
 
   <script>
     function initInsight() {
-    var insightClient = new sfDataIntell.Client({
+    window.insightClient = new sfDataIntell.Client({
         apiKey: '8508d835-d75c-2bcf-b181-6e80bec65e90', // replace with your Insight data center API key
-        apiServerUrl: 'https://au-api.insight.sitefinity.com', // change this to the API server URL where your Insight account is hosted
+        authToken: 'appauth 4E7F919D-4110-A6DE-5B35-8FC0767DBE60,
+		apiServerUrl: 'https://au-api.insight.sitefinity.com', // change this to the API server URL where your Insight account is hosted
         source: 'Website',
         trackPageVisits: true,
         trackBrowserInformation: true,
         trackUtmParameters: true,
-        crossDomainTrackingEntries: ["example.org", "example.com"]
+		instrument: true
     });
+	
+	var inLead = function (result) {
+		var event = new CustomEvent("insight-leads", {"detail": result});
+		document.dispatchEvent(event);
+	};
+
+	var onFailure = function (error) {
+		console.log(error);
+	};
+	
+	var visitor = JSON.stringify({[window.insightClient.source]:[window.insightClient.sentenceClient.subjectKey]});
+	window.insightClient.personalizationClient.isInLeads('20, 21', visitor, inLead, onFailure);
 }
 
 document.addEventListener('insight-sdk-ready', initInsight);
