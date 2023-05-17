@@ -74,6 +74,8 @@
 		
 		document.addEventListener("insight-leads", function(e) {
 			
+			chatSettings.session.context._systemTracking.insight.subject = window.insightClient.sentenceClient.subjectKey;
+			
 			var showChat = false;
 			//Check if the visitor is in the second level (Purchased) of the SF Insight LeadScore (SIM Card)
 			if(e.detail.find(x => x.Leads.find(l => l.ScoringId === 20 && l.Levels.find(lvl => lvl.LevelId === 2))))
